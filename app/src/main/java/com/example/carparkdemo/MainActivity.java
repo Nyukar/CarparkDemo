@@ -21,7 +21,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
-
+// 
 public class MainActivity extends AppCompatActivity {
 
     Spinner departSpinner;
