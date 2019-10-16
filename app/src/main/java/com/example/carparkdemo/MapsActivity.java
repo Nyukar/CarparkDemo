@@ -36,7 +36,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        createLocationRequest();
+
+        //init location//
+      //  createLocationRequest();
     }
 
 
@@ -54,14 +56,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng cp2 = new LatLng(-37.722441, 145.045799);
-        mMap.addMarker(new MarkerOptions().position(cp2).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(cp2));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(18.4f), 2000, null);
+        LatLng cp2 = new LatLng(-37.722441, 145.045990);
+        mMap.addMarker(new MarkerOptions().position(cp2).title("Marker in Carpark 2"));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(cp2));
+       mMap.animateCamera(CameraUpdateFactory.zoomTo(18.55f), 2000, null);
 
     }
 
-    protected void createLocationRequest() {
+   /* protected void createLocationRequest() {
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(2000);
         mLocationRequest.setFastestInterval(1000);
@@ -70,4 +72,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mFusedLocationClient.requestLocationUpdates(mLocationRequest, locationCallback, this.getMainLooper());
 
     }
+
+    */
 }
