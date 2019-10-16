@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         emailt = (EditText)findViewById(R.id.email);
         passwordt = (EditText)findViewById(R.id.password);
         logint = (Button)findViewById(R.id.btnLogin);
-        info = (TextView)findViewById(R.id.tvInfo);
+
         logint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { validate(emailt.getText().toString(), passwordt.getText().toString());
@@ -42,15 +42,6 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
         }
-        else
-        {
-            counter--;
 
-            info.setText("No of attempts remaining: " + String.valueOf(counter));
-
-            if(counter == 0) {
-                logint.setEnabled(false);
-            }
-        }
     }
 }

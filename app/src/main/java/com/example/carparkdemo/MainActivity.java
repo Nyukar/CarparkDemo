@@ -72,9 +72,10 @@ public class MainActivity extends AppCompatActivity {
                 Map<String, Object> registration = new HashMap<>();
                 registration.put("carpark", "1");
 
+
                 //person details (you might dervive this from a saved state in the app
 
-               if(userView.getText().toString().equals("Jane")) {
+               if(userView.getText().toString().equalsIgnoreCase("Jane")) {
 
                    Map<String, Object> user = new HashMap<>();
                    user.put("Name", "Jane");
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
                }
 
-                if(userView.getText().toString().equals("Bob")) {
+                if(userView.getText().toString().equalsIgnoreCase("Bob")) {
 
                     Map<String, Object> user = new HashMap<>();
                     user.put("Name", "Bob");
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
                     registration.put("User", user);
 
-                   
+
                     Map<String, Object> car = new HashMap<>();
                     car.put("Manufacturer", "Toyota");
                     car.put("Model", "Corolla");
