@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     Button findButton;
 
     TextView resultsView;
+    TextView userView;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         resultsView = (TextView) findViewById(R.id.FoundTextTV);
+        userView = (TextView) findViewById(R.id.userNameText);
 
         //load up the spinners with time values
 
@@ -71,21 +73,46 @@ public class MainActivity extends AppCompatActivity {
                 registration.put("carpark", "1");
 
                 //person details (you might dervive this from a saved state in the app
-                Map<String, Object> user = new HashMap<>();
-                user.put("Name", "Jane");
-                user.put("Points", "500");
-                user.put("Phone", "0433572342");
 
-                registration.put("User", user);
+               if(userView.getText().toString().equals("Jane")) {
 
-                //car details (you might derive this from a saved state in the app
-                Map<String, Object> car = new HashMap<>();
-                car.put("Manufacturer", "Toyota");
-                car.put("Model", "Corolla");
-                car.put("Colour", "Red");
-                car.put("Plate", "ABC123");
+                   Map<String, Object> user = new HashMap<>();
+                   user.put("Name", "Jane");
+                   user.put("Points", "500");
+                   user.put("Phone", "0433572342");
 
-                registration.put("car", car);
+                   registration.put("User", user);
+
+                   //car details (you might derive this from a saved state in the app
+                   Map<String, Object> car = new HashMap<>();
+                   car.put("Manufacturer", "Toyota");
+                   car.put("Model", "Corolla");
+                   car.put("Colour", "Red");
+                   car.put("Plate", "ABC123");
+
+                   registration.put("car", car);
+
+               }
+
+                if(userView.getText().toString().equals("Bob")) {
+
+                    Map<String, Object> user = new HashMap<>();
+                    user.put("Name", "Bob");
+                    user.put("Points", "250");
+                    user.put("Phone", "0433576531");
+
+                    registration.put("User", user);
+
+                   
+                    Map<String, Object> car = new HashMap<>();
+                    car.put("Manufacturer", "Toyota");
+                    car.put("Model", "Corolla");
+                    car.put("Colour", "Red");
+                    car.put("Plate", "ABC123");
+
+                    registration.put("car", car);
+
+                }
 
 
                 // get the leave time from the UI
