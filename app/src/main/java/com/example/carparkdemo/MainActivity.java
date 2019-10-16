@@ -1,14 +1,19 @@
 package com.example.carparkdemo;
 
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -29,9 +34,11 @@ public class MainActivity extends AppCompatActivity {
 
     Button registerButton;
     Button findButton;
+    Button goMap;
 
     TextView resultsView;
     TextView userView;
+
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -46,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
 
         resultsView = (TextView) findViewById(R.id.FoundTextTV);
         userView = (TextView) findViewById(R.id.userNameText);
+        goMap = (Button) findViewById(R.id.checkMap);
+        goMap.setEnabled(false);
+
 
         //load up the spinners with time values
 
@@ -68,6 +78,21 @@ public class MainActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+
+                //Getting the toast ready/
+
+                Context context = getApplicationContext();
+                String str = userView.getText().toString();
+                String text = "Hello, " + str + '\n' + "Thank-you for Registering";
+                int duration = Toast.LENGTH_SHORT;
+
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.setGravity(Gravity.TOP, 0, 250);
+                toast.show();
+
+                goMap.setEnabled(true);
+
                 // Create a new user with a first and last name
                 Map<String, Object> registration = new HashMap<>();
                 registration.put("carpark", "1");
@@ -171,5 +196,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
+
+        goMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { goToMaps();
+            }
+        });
     }
+
+    private void goToMaps()
+    {
+
+            Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+            startActivity(intent);
+
+
+    }
+
+
 }

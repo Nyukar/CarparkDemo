@@ -1,12 +1,12 @@
 package com.example.carparkdemo;
 
-import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -14,7 +14,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText emailt;
     private EditText passwordt;
-    private TextView info;
     private Button logint;
     private int counter = 5;
 
