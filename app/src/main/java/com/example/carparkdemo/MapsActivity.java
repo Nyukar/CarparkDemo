@@ -1,10 +1,14 @@
 package com.example.carparkdemo;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.Toast;
+import android.app.DialogFragment;import android.app.Dialog;
+import android.content.DialogInterface;
+import android.os.Bundle;
 
 
 import androidx.fragment.app.FragmentActivity;
@@ -22,6 +26,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.MapStyleOptions;
 
+
 import java.util.ArrayList;
 
 //import android.support.v4.app.FragmentActivity;
@@ -35,6 +40,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ArrayList<LatLng> points;
     private LatLng locA;
     Marker yes;
+    private  boolean checkClaim;
     private static final float SMALLEST_DISPLACEMENT = 0.5F;
 
     @Override
@@ -45,9 +51,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
+        checkClaim = false;
         //init location//
         //  createLocationRequest();
+
+
     }
 
 
@@ -85,9 +93,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker m) {
+
+
+                //there would be a delete coordinate in Firebase line here//
                 yes.remove();
 
-                //Getting the toast ready/
+
+                // check is dialogue has been answered YES//
+
+                //ClaimPark claimPark = new ClaimPark();
+                //claimPark.show(getSupportFragmentManager(), "ClaimPark");
+
+                //check if dialogue has been ticked
+
 
                 Context context = getApplicationContext();
                 String text = "Enjoy your park!";
@@ -115,5 +133,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     */
 
     }
+
+
+
+
 
 }

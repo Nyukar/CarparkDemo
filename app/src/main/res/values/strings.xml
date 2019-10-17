@@ -243,4 +243,9 @@
   }
 ]
   </string>
+
+  <string name="claimMarker">Claim park?</string>
+
+  <string name="Claim">Claim</string>
+  <string name="Cancel">Cancel</string>
 </resources>
