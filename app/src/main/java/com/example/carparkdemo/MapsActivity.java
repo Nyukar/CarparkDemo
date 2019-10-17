@@ -29,6 +29,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LocationCallback locationCallback;
     private LocationRequest mLocationRequest;
     private ArrayList<LatLng> points;
+    private  LatLng locA;
 
     private static final float SMALLEST_DISPLACEMENT = 0.5F;
 
@@ -89,4 +90,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     */
+
 }

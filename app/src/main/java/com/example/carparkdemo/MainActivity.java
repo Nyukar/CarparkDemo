@@ -2,6 +2,7 @@ package com.example.carparkdemo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -11,10 +12,16 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.location.Location;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,22 +31,30 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 //
 public class MainActivity extends AppCompatActivity {
 
-    Spinner departSpinner;
-    Spinner arriveSpinner;
+    private Spinner departSpinner;
+    private Spinner arriveSpinner;
 
-    Button registerButton;
-    Button findButton;
-    Button goMap;
+    private Button registerButton;
+    private Button findButton;
+    private Button goMap;
 
-    TextView resultsView;
-    TextView userView;
+    private TextView resultsView;
+    private TextView userView;
+    private LocationManager locationManager;
 
+    private FusedLocationProviderClient mFusedLocationClient;
+    private LocationCallback locationCallback;
+    private LocationRequest mLocationRequest;
+    private ArrayList<LatLng> points;
+    private boolean cReady;
 
+    private LatLng[] locA = new LatLng[1];
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
@@ -49,12 +64,14 @@ public class MainActivity extends AppCompatActivity {
 
         registerButton = (Button) findViewById(R.id.registerButton);
         findButton = (Button) findViewById(R.id.findButton);
-
+        cReady = false;
 
         resultsView = (TextView) findViewById(R.id.FoundTextTV);
         userView = (TextView) findViewById(R.id.userNameText);
         goMap = (Button) findViewById(R.id.checkMap);
         //goMap.setEnabled(false);
+
+
 
 
         //load up the spinners with time values
@@ -85,6 +102,14 @@ public class MainActivity extends AppCompatActivity {
                 String str = userView.getText().toString();
                 String text = "Hello, " + str + '\n' + "Thank-you for Registering";
                 int duration = Toast.LENGTH_SHORT;
+
+
+                //coordds stuff
+
+                
+
+
+
 
 
                 Toast toast = Toast.makeText(context, text, duration);
@@ -211,6 +236,32 @@ public class MainActivity extends AppCompatActivity {
 
             Intent intent = new Intent(MainActivity.this, MapsActivity.class);
             startActivity(intent);
+
+
+    }
+
+    private boolean isLocationEnabled() {
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
+                locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+    }
+
+    public LatLng[] toMap()
+    {
+        final LatLng[] loc = new LatLng[1];
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        mFusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                loc[0] = new LatLng(location.getLatitude(), location.getLongitude());
+
+
+            }
+        });
+
+        //hold location readings//
+        points = new ArrayList<LatLng>();
+
+        return loc;
 
 
     }
