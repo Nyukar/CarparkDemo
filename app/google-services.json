@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "766674545489",
+    "firebase_url": "https://tanzania-255000.firebaseio.com",
+    "project_id": "tanzania-255000",
+    "storage_bucket": "tanzania-255000.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766674545489:android:8642e6f0b142b51ad4c170",
+        "android_client_info": {
+          "package_name": "com.example.carparkdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "766674545489-mgl8ft76cdbmri0e9nu9uk5dgj5vico2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.carparkdemo",
+            "certificate_hash": "b00bde310d51c0d3b4aba24740c73deb1c777cd9"
+          }
+        },
+        {
+          "client_id": "766674545489-ivqoe8b23pq5mmippi1vqoigcdvuf6sf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWZ7qNTTf_MvzAxFE2cMbNZYNPtb8QTZg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "766674545489-ivqoe8b23pq5mmippi1vqoigcdvuf6sf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
