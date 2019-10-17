@@ -104,14 +104,6 @@ public class MainActivity extends AppCompatActivity {
                 int duration = Toast.LENGTH_SHORT;
 
 
-                //coordds stuff
-
-
-
-
-
-
-
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.setGravity(Gravity.TOP, 0, 250);
                 toast.show();

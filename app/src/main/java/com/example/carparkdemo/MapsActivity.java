@@ -1,7 +1,10 @@
 package com.example.carparkdemo;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.widget.Toast;
 
 
 import androidx.fragment.app.FragmentActivity;
@@ -15,6 +18,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.MapStyleOptions;
 
@@ -29,8 +33,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LocationCallback locationCallback;
     private LocationRequest mLocationRequest;
     private ArrayList<LatLng> points;
-    private  LatLng locA;
-
+    private LatLng locA;
+    Marker yes;
     private static final float SMALLEST_DISPLACEMENT = 0.5F;
 
     @Override
@@ -43,7 +47,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
 
         //init location//
-      //  createLocationRequest();
+        //  createLocationRequest();
     }
 
 
@@ -69,15 +73,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         // Add a marker in carpark 2 and move the camera
-        LatLng cp2 = new LatLng(-37.722441, 145.045720);
+        final LatLng cp2 = new LatLng(-37.722441, 145.045720);
 
 
-        mMap.addMarker(new MarkerOptions().position(cp2).title("Marker in Carpark 2"));
+        yes = mMap.addMarker(new MarkerOptions().position(cp2).title("Marker in Carpark 2"));
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(cp2));
-       // mMap.animateCamera(CameraUpdateFactory.zoomIn());
-         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(cp2, 18.5f), 2000, null);
+        // mMap.animateCamera(CameraUpdateFactory.zoomIn());
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(cp2, 18.5f), 2000, null);
         //CameraUpdateFactory.newLatLngZoom(cp2, 18.55f);
-    }
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker m) {
+                yes.remove();
+
+                //Getting the toast ready/
+
+                Context context = getApplicationContext();
+                String text = "Enjoy your park!";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.setGravity(Gravity.TOP, 0, 250);
+                toast.show();
+
+                return true;
+            }
+        });
+
 
    /* protected void createLocationRequest() {
         mLocationRequest = new LocationRequest();
@@ -90,5 +113,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     */
+
+    }
 
 }
