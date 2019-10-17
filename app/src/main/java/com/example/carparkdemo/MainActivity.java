@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         resultsView = (TextView) findViewById(R.id.FoundTextTV);
         userView = (TextView) findViewById(R.id.userNameText);
         goMap = (Button) findViewById(R.id.checkMap);
-        //goMap.setEnabled(false);
+        goMap.setEnabled(false);
 
 
 
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //coordds stuff
 
-                
+
 
 
 
@@ -223,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+        //button listener to go to maps//
         goMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { goToMaps();
@@ -231,6 +231,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //goes to maps activity//
     private void goToMaps()
     {
 
@@ -240,11 +241,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private boolean isLocationEnabled() {
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
-                locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-    }
 
+
+
+    //meant to send latlng to MapsActivity//
     public LatLng[] toMap()
     {
         final LatLng[] loc = new LatLng[1];
