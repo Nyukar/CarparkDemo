@@ -1,18 +1,22 @@
 package com.example.carparkdemo;
 
 import android.os.Bundle;
+import android.util.Log;
+
 
 import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.MapStyleOptions;
 
 import java.util.ArrayList;
 
@@ -55,14 +59,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng cp2 = new LatLng(-37.722441, 145.045990);
+        boolean success = googleMap.setMapStyle(new MapStyleOptions(getResources()
+                .getString(R.string.style_json)));
+
+        if (!success) {
+            String TAG = "MapsActivity";
+            Log.e(TAG, "Style parsing failed.");
+        }
+
+        // Add a marker in carpark 2 and move the camera
+        LatLng cp2 = new LatLng(-37.722441, 145.045720);
 
 
         mMap.addMarker(new MarkerOptions().position(cp2).title("Marker in Carpark 2"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(cp2));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(18.55f), 2000, null);
-
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(cp2));
+       // mMap.animateCamera(CameraUpdateFactory.zoomIn());
+         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(cp2, 18.5f), 2000, null);
+        //CameraUpdateFactory.newLatLngZoom(cp2, 18.55f);
     }
 
    /* protected void createLocationRequest() {
