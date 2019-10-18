@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         resultsView = (TextView) findViewById(R.id.FoundTextTV);
         userView = (TextView) findViewById(R.id.userNameText);
         goMap = (Button) findViewById(R.id.checkMap);
-        //goMap.setEnabled(false);
+        goMap.setEnabled(false);
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
