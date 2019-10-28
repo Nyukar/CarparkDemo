@@ -21,6 +21,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -29,6 +31,7 @@ import com.google.android.gms.maps.model.MapStyleOptions;
 
 import java.util.ArrayList;
 
+import static java.lang.Double.doubleToLongBits;
 import static java.lang.Double.valueOf;
 
 //import android.support.v4.app.FragmentActivity;
@@ -41,6 +44,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LocationRequest mLocationRequest;
     private ArrayList<LatLng> points;
     private LatLng locA;
+    LatLng hardMark = new LatLng(-37.722573, 145.045072);
     Marker yes;
     private  boolean checkClaim;
     private static final float SMALLEST_DISPLACEMENT = 0.5F;
@@ -93,6 +97,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         yes = mMap.addMarker(new MarkerOptions().position(currentPos).title("Marker in Carpark 2"));
+        mMap.addMarker(new MarkerOptions().position(hardMark).title("Marker in Carpark 2"));
+
+        // Changing marker icon
+
+
+
+
+
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(cp2));
         // mMap.animateCamera(CameraUpdateFactory.zoomIn());
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(cp2, 18.5f), 2000, null);
@@ -143,7 +155,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
+public double getLat(LatLng x)
+    {
 
+        LatLng tm = x;
+
+        double latM = tm.latitude;
+
+        return latM;
+
+
+
+    }
+
+
+    public LatLng getPos()
+    {
+
+        LatLng tm = currentPos;
+
+       return tm;
+
+
+
+    }
 
 
 }

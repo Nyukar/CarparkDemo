@@ -45,4 +45,12 @@
         app:layout_constraintTop_toBottomOf="@+id/password"
         app:layout_constraintVertical_bias="0.084" />
 
+    <TextView
+        android:id="@+id/failView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@android:string/dialog_alert_title"
+        tools:layout_editor_absoluteX="173dp"
+        tools:layout_editor_absoluteY="419dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
